@@ -13,6 +13,6 @@ Todo App in JavaScript with HTML &amp; CSS
 ### Image 2
 ![Screenshot 2](screenshots/img2.png)
 
-##Support
+## Support
 * Feel free to Modify and Update this project
 * Thank you!
