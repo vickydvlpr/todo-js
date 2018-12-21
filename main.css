@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #dde5e7;
+    padding-top: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Styling Header, Input and Button */
+header {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #104161;
+    height: 70px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .5); 
+}
+header input {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    display: block;
+    width: calc(100% - 80px);
+    /* Accomodate width to padding and left right position */
+    height: 40px;
+    border-radius: 5px 20px 20px 5px;
+    border: none;
+    text-indent: 15px;
+    background: #0d3550;
+    color: #ffffff;
+    font-size: 15px;
+    padding-right: 50px;
+}
+/* Changing placeholder color of todo input */
+header input::placeholder {
+    opacity: 0.8;
+}
+header button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color:  rgb(0, 94, 156);
+    background: rgba(255, 255, 255, 0, .8);
+    transition: color 0.3s ease, background 0.2s ease;
+}
+header button:hover { 
+    cursor: pointer;
+    background: #4aba2a;
+    color: #ffffff;
+}
+
+/* Styling todo list */
+ul {
+    padding: 20px;
+    list-style:  none;
+}
+ul li {
+    min-height: 50px;
+    background: #fafafa;
+    margin-bottom: 10px;
+    position: relative;
+    border-radius: 5px;
+    line-height: 50px;
+    padding-left: 15px;
+    padding-right: 100px;
+    appearance: none;
+    box-shadow: 0 1px 2px #ccc;
+    animation: 500ms insert ease;
+}
+@keyframes insert {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+ul li div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 50px;
+}
+ul li div button {
+    float: left;
+    background: none;
+    border: 0px;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    position: relative;
+}
+ul li div button:first-of-type svg {
+    fill: #ea3a3a;
+}
+ul li div button:last-of-type {
+    fill: #4aba2a;
+}
+ul li div button:last-of-type:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -10px;
+    width: 1px;
+    background: #dddddd;
+    height: 20px;
+}
+ul li div button svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: fill 0.1s ease-out;
+}
+
+/* changing styles of done todo list */
+#done li div button:last-of-type svg {
+    fill: #ffffff;
+    background: #4aba2a;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+/* Showing horizontal line if done list has elements */
+#done:not(:empty):before {
+    display: block;
+    content: "";
+    margin: auto;
+    margin-top: -30px;
+    margin-bottom: 20px;
+    height: 1px;
+    width: 150px;
+    background: hsla(204, 72%, 18%, 0.2);
+}
+ul li div button:hover {
+    cursor: pointer;
+}
+ul li div button:hover svg {
+    fill: #333333;
+}
+
+/* No todo msg box */
+#empty {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(15, 60, 90);
+    animation: insert 0.5s;
+}
+#empty h3 {
+    font-weight: normal;
+    font-size: 1em;
+}
+
+/* Condition for showing No Todo Message */
+ul:first-of-type:empty ~ #empty {
+    display: block;
+}
+ul:last-of-type:not(:empty) ~ #empty {
+    display: none;
+}
+#msg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #9e0000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: -60px;
+    transition: margin 0.5s ease;
+    opacity: 0.8;
+}
+#msg h4 {
+    font-weight: normal;
+}
+#msg.msgshow {
+    margin-bottom: 0px;
+}
